@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>RapidHeal</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1B3A5C">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; background:#f0f5fa; color:#1B3A5C; padding-bottom:90px; }
+
+/* Language Bar */
+.lang-bar { display:flex; justify-content:center; gap:10px; padding:10px; background:#e3f2fd; position:sticky; top:0; z-index:100; }
+.lang-bar button { padding:6px 16px; border:2px solid #1B3A5C; background:white; color:#1B3A5C; border-radius:20px; font-size:13px; font-weight:bold; cursor:pointer; }
+.lang-bar button.active { background:#1B3A5C; color:white; }
+
+/* Header */
+.header { background:#1B3A5C; color:white; text-align:center; padding:20px; }
+.header h1 { font-size:24px; margin-bottom:5px; }
+.header h1 span { color:#7CB342; }
+.header p { font-size:14px; opacity:0.9; }
+
+/* Pages */
+.page { display:none; max-width:600px; margin:0 auto; padding:16px; animation:fadeIn .3s; }
+.page.active { display:block !important; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+/* Home Buttons */
+.big-btn { width:100%; padding:18px; margin-bottom:12px; border:none; border-radius:14px; font-size:16px; font-weight:bold; cursor:pointer; color:white; display:flex; align-items:center; justify-content:center; gap:10px; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+.big-btn:active { transform:scale(0.97); }
+.btn-green { background:#7CB342; }
+.btn-blue { background:#1B3A5C; }
+.btn-red { background:#ef5350; }
+.btn-outline { background:white; color:#1B3A5C; border:2px solid #1B3A5C; }
+
+.warning { background:#ffebee; border:2px solid #ef5350; color:#c62828; padding:12px; border-radius:12px; margin-bottom:16px; font-size:13px; font-weight:bold; text-align:center; }
+
+/* Cards */
+.card { background:white; border-radius:14px; padding:16px; margin-bottom:12px; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
+.card h2 { color:#1B3A5C; margin-bottom:10px; font-size:20px; }
+
+/* Search */
+.search-box { display:flex; gap:8px; margin-bottom:12px; }
+.search-box input { flex:1; padding:12px; border:2px solid #e0e0e0; border-radius:10px; font-size:15px; }
+.search-btn { background:#1B3A5C; color:white; border:none; border-radius:10px; padding:12px 16px; font-weight:bold; cursor:pointer; }
+
+.med-item { background:white; border-radius:10px; padding:14px; margin-bottom:10px; border-right:4px solid #7CB342; cursor:pointer; box-shadow:0 1px 4px rgba(0,0,0,0.04); }
+.med-name { font-weight:bold; color:#1B3A5C; font-size:16px; }
+.med-use { color:#666; font-size:13px; margin-top:4px; }
+
+/* Miasm Cards */
+.miasm-card { background:white; border-radius:12px; padding:16px; margin-bottom:12px; border-top:5px solid; cursor:pointer; box-shadow:0 2px 6px rgba(0,0,0,0.05); }
+.miasm-card.psora { border-top-color:#7CB342; }
+.miasm-card.sycosis { border-top-color:#1B3A5C; }
+.miasm-card.syphilis { border-top-color:#c62828; }
+.miasm-card.tuberculin { border-top-color:#ffa726; }
+.miasm-card.cancer { border-top-color:#7e57c2; }
+.miasm-title { font-weight:bold; font-size:16px; margin-bottom:4px; }
+.miasm-desc { font-size:14px; color:#555; }
+
+/* Bottom Tab Bar */
+.tab-bar { position:fixed; bottom:0; left:0; right:0; background:white; border-top:1px solid #e0e0e0; display:flex; height:70px; box-shadow:0 -4px 12px rgba(0,0,0,0.06); z-index:1000; }
+.tab-btn { flex:1; background:none; border:none; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#999; font-size:11px; font-weight:bold; cursor:pointer; gap:4px; }
+.tab-btn svg { width:24px; height:24px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+.tab-btn.active { color:#7CB342; }
+.tab-btn.active svg { stroke:#7CB342; }
+
+/* About */
+.about-box { background:white; border-radius:16px; padding:24px; text-align:center; }
+.about-box .logo-big { width:80px; height:80px; margin:0 auto 12px; }
+
+@media (max-width:380px){
+ .tab-btn { font-size:10px; }
+  .tab-btn svg { width:22px; height:22px; }
+}
+</style>
+</head>
+<body>
+
+<!-- LANGUAGE BAR -->
+<div class="lang-bar">
+  <button onclick="setLang('roman')" id="btn-roman">Roman</button>
+  <button onclick="setLang('english')" id="btn-english">English</button>
+  <button onclick="setLang('urdu')" id="btn-urdu" class="active">اردو</button>
+</div>
+
+<!-- ================= PAGE: HOME ================= -->
+<div id="page-home" class="page active">
+  <div class="header">
+    <h1>Rapid<span>Heal</span></h1>
+    <p data-t="t1">میازمیٹک اپروچ</p>
+  </div>
+  <div style="padding:16px;">
+    <div class="warning" data-t="warn">⚠️ دوائی استعمال کرنے سے پہلے ہومیوپیتھک ڈاکٹر سے مشورہ کریں</div>
+    <button class="big-btn btn-green" onclick="goPage('search')">
+      <span>🔍</span><span data-t="t2">علامات لکھیں، دوائیں تلاش کریں</span>
+    </button>
+    <button class="big-btn btn-blue" onclick="goPage('materia')">
+      <span>📋</span><span data-t="t3">تمام ادویات</span>
+    </button>
+    <button class="big-btn btn-outline" onclick="goPage('miasms')">
+      <span>🛡️</span><span data-t="t4">میازمیٹک نقطہ نظر</span>
+    </button>
+    <button class="big-btn btn-red" onclick="goPage('about')">
+      <span>ℹ️</span><span data-t="t5">ایپ کے بارے میں</span>
+    </button>
+  </div>
+</div>
+
+<!-- ================= PAGE: SEARCH ================= -->
+<div id="page-search" class="page">
+  <div class="card">
+    <h2>🔍 <span data-t="t6">تلاش</span></h2>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="دوائی یا علامات لکھیں..." onkeyup="doSearch()">
+      <button class="search-btn" onclick="doSearch()" data-t="t7">تلاش</button>
+    </div>
+  </div>
+  <div id="searchResults"></div>
+</div>
+
+<!-- ================= PAGE: MIASMS ================= -->
+<div id="page-miasms" class="page">
+  <div class="card">
+    <h2>🛡️ <span data-t="t8">میازمیٹک نقطہ نظر</span></h2>
+    <p style="color:#666;font-size:14px;" data-t="t9">پانچ بنیادی میازمز کی تفصیل</p>
+  </div>
+  <div class="miasm-card psora" onclick="alert('Psora: Sulphur, Psorinum')">
+ <div class="miasm-title">1. Psora (سورا)</div>
+    <div class="miasm-desc" data-t="m1">خارش، جلد کے مسائل، غذائی بیماریاں، سردی سے بھاگنا</div>
+  </div>
+  <div class="miasm-card sycosis" onclick="alert('Sycosis: Thuja, Medorrhinum')">
+    <div class="miasm-title">2. Sycosis (سائیکوسس)</div>
+    <div class="miasm-desc" data-t="m2">گلٹیاں، بیرونی نشانات، پیشاب کے مسائل</div>
+  </div>
+  <div class="miasm-card syphilis" onclick="alert('Syphilis: Merc Sol, Syphilinum')">
+    <div class="miasm-title">3. Syphilis (سفلس)</div>
+    <div class="miasm-desc" data-t="m3">رات میں بڑھنے والے مسائل، کسی عضو میں بگاڑ، زخم</div>
+  </div>
+  <div class="miasm-card tuberculin" onclick="alert('Tuberculin: Bacillinum, Tuberculinum')">
+ <div class="miasm-title">4. Tuberculin ٹیوبرکولینم)</div>
+    <div class="miasm-desc" data-t="m4">سانس کی بیماریاں، تیز بخار، کمزوری</div>
+  </div>
+  <div class="miasm-card cancer" onclick="alert('Cancer: Carcinosin, Scrophularia')">
+    <div class="miasm-title">5. Cancer (کینسر)</div>
+    <div class="miasm-desc" data-t="m5">سخت گلٹیاں، خاندانی ہسٹری، دیر سے شفا</div>
+  </div>
+</div>
+
+<!-- ================= PAGE: MATERIA ================= -->
+<div id="page-materia" class="page">
+  <div class="card">
+    <h2>📋 <span data-t="t10">میٹیریا میڈیکا</span></h2>
+  </div>
+  <div id="materiaList"></div>
+</div>
+
+<!-- ================= PAGE: ABOUT ================= -->
+<div id="page-about" class="page">
+  <div class="about-box">
+    <svg class="logo-big" viewBox="0 0 100 100" fill="none">
+      <path d="M50 8 L82 20 L82 50 Q82 76 50 92 Q18 76 18 50 L18 20 Z" fill="none" stroke="#1B3A5C" stroke-width="3"/>
+      <path d="M35 28 L35 72 L42 72 L42 54 L50 54 L58 72 L66 72 L57 52 Q65 48 65 40 Q65 28 50 28 Z M42 36 L50 36 Q58 36 58 42 Q58 48 50 48 L42 48 Z" fill="#1B3A5C"/>
+      <path d="M15 82 L28 82 L34 68 L42 88 L48 74 L52 82 L85 82" stroke="#7CB342" stroke-width="3" fill="none"/>
+      <circle cx="72" cy="28" r="10" fill="#7CB342"/>
+      <rect x="69" y="23" width="6" height="10" fill="white"/>
+      <rect x="67" y="25" width="10" height="6" fill="white"/>
+    </svg>
+    <h2 style="color:#1B3A5C;">Rapid<span style="color:#7CB342;">Heal</span></h2>
+    <p style="color:#666;font-size:14px;margin:12px 0;" data-t="t11">یہ ایپ ہومیوپیتھک دوائیوں کی تلاش اور میازمیٹک نقطہ نظر سے مدد کے لیے بنائی گئی ہے۔</p>
+    <p style="color:#c62828;font-size:12px;font-weight:bold;" data-t="t12">یہ ایپ صرف پروفیشنل ہومیوپیتھک ڈاکٹر اور معلوماتی مقاصد کے لیے ہے۔ کسی بھی دوائی کے استعمال سے پہلے اپنے ہومیوپیتھک ڈاکٹر سے رجوع کریں۔</p>
+  </div>
+</div>
+
+<!-- ================= BOTTOM TAB BAR ================= -->
+<div class="tab-bar">
+  <button class="tab-btn active" id="tab-home" onclick="goPage('home')">
+    <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Home</span>
+  </button>
+  <button class="tab-btn" id="tab-search" onclick="goPage('search')">
+    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <span data-t="tab1">تلاش</span>
+  </button>
+  <button class="tab-btn" id="tab-miasms" onclick="goPage('miasms')">
+    <svg viewBox="0 0 24 24" style="stroke-width:1.6;"><path d="M12 2 L20 5 L20 11 Q20 17 12 22 Q4 17 4 11 L4 5 Z"/><path d="M8 7 L8 17 M8 7 L12 7 Q14 7 14 10 Q14 13 12 13 L8 13 M11 13 L14 17" fill="none"/><circle cx="18" cy="5" r="3" fill="#7CB342" stroke="none"/><path d="M18 3.5 L18 6.5 M16.5 5 L19.5 5" stroke="white" stroke-width="1.2"/></svg>
+    <span>Miasms</span>
+  </button>
+  <button class="tab-btn" id="tab-materia" onclick="goPage('materia')">
+    <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+    <span data-t="tab2">ادویات</span>
+  </button>
+  <button class="tab-btn" id="tab-about" onclick="goPage('about')">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <span data-t="tab3">ایباؤٹ</span>
+  </button>
+</div>
+
+<script>
+/* ================= DATA ================= */
+var medicineData = [
+  {name:"Aconite",uses:"بخار، گھبراہٹ، سردی"},
+  {name:"Allium Cepa",uses:"آ نکھوں سے سادہ پانی، الرجی"},
+  {name:"Arnica",uses:"چوٹ، نیل، درد"},
+  {name:"Arsenicum",uses:"فوڈ پوائزننگ، بے چینی"},
+  {name:"Belladonna",uses:"تیز بخار، سر درد"},
+  {name:"Bryonia",uses:"خشک کھانسی، جوڑوں کا درد"},
+  {name:"Calcarea Carb",uses:"دانت نکلنا، ٹھنڈا پسینہ"},
+  {name:"Cantharis",uses:"جلن، پیشاب میں جلن"},
+  {name:"Chamomilla",uses:"دانت نکلنا، چڑچڑاپن"},
+  {name:"Gelsemium",uses:"فلو، کمزوری، کانپنا"},
+  {name:"Hypericum",uses:"نرو کی چوٹ، زخم"},
+  {name:"Ignatia",uses:"غم، جذباتی صدمہ"},
+  {name:"Ipecac",uses:"متلی، الٹی"},
+  {name:"Lachesis",uses:"گرم چہرہ، رشک"},
+  {name:"Ledum",uses:"کاٹنے کا زخم، آنکھ کا نیل"},
+  {name:"Magnesia Phos",uses:"مرچ، کولک"},
+  {name:"Mercurius",uses:"گلے کی سوزش، غدود کا سوجنا"},
+  {name:"Natrum Mur",uses:"آدھے سر کا درد، غم"},
+  {name:"Nux Vomica",uses:"بدہضمی، چڑچڑاپن"},
+  {name:"Phosphorus",uses:"جلن کا درد، خوف"},
+  {name:"Pulsatilla",uses:"زکام، رونا، بدلتے علامات"},
+  {name:"Rhus Tox",uses:"جوڑوں کا درد، زہریلی بیل"},
+  {name:"Silicea",uses:"کانٹا، پیپ، سردی"},
+  {name:"Sulphur",uses:"جلد کی خارش، جلن"}
+];
+
+/* ================= TRANSLATIONS ================= */
+var texts = {
+  urdu: {
+    t1:"میازمیٹک ریپڈ ہیل", warn:"⚠️ دوائی استعمال کرنے سے پہلے ڈاکٹر سے مشورہ کریں",
+    t2:"علامات لکھیں، دوائیں تلاش کریں", t3:"تمام ادویات",
+    t4:"میازمیٹک نقطہ نظر", t5:"ایپ کے بارے میں",
+    t6:"تلاش", t7:"تلاش", t8:"میازمیٹک نقطہ نظر",
+    t9:"پانچ بنیادی میازمز کی تفصیل",
+    t10:"میٹیریا میڈیکا", t11:"یہ ایپ ہومیوپیتھک دوائیوں کی تلاش اور میازمیٹک نقطہ نظر سے مدد کے لیے بنائی گئی ہے۔",
+    t12:"یہ ایپ صرف معلوماتی مقاصد کے لیے ہے۔ کسی بھی دوائی کے استعمال سے پہلے اپنے ڈاکٹر سے مشورہ کریں۔",
+    tab1:"تلاش", tab2:"ادویات", tab3:"ایباؤٹ",
+    m1:"خارش، جلد کے مسائل، غذائی بیماریاں، سردی سے بھاگنا",
+    m2:"گولٹیاں، بیرونی نشانات، پیشاب کے مسائل",
+    m3:"رات میں بڑھنے والے مسائل، تباہی، زخم",
+    m4:"سانس کی بیماریاں، تیز بخار، کمزوری",
+    m5:"سخت گلٹیاں، خاندانی تاریخ، دیر سے شفا"
+ },
+  english: {
+    t1:"Homeopathic Medicine Finder", warn:"⚠️ Consult doctor before using medicine",
+    t2:"Search Remedies", t3:"All Medicines",
+    t4:"Miasmatic Approach", t5:"About App",
+    t6:"Search", t7:"Search", t8:"Miasmatic Approach",
+    t9:"Details of 5 basic miasms",
+    t10:"Materia Medica", t11:"This app helps find homeopathic remedies.",
+    t12:"For informational purposes only. Consult your doctor.",
+    tab1:"Search", tab2:"Materia", tab3:"About",
+    m1:"Itching, skin issues, digestive problems, cold sensitivity",
+    m2:"Warts, external growths, urinary issues",
+    m3:"Night aggravation, destruction, ulcers",
+    m4:"Respiratory issues, high fever, weakness",
+    m5:"Hard lumps, family history, slow healing"
+  },
+  roman: {
+    t1:"Homeopathic Medicine Finder", warn:"⚠️ Dawai istemal se pehle doctor se mashwara karein",
+    t2:"Alamat likhein, dawaiyan talash karein", t3:"Tamam adwiyat",
+    t4:"Miasmatic Approach", t5:"App ke bare mein",
+    t6:"Talash", t7:"Talash", t8:"Miasmatic Approach",
+    t9:"5 basic miasms ki tafsilat",
+    t10:"Materia Medica", t11:"Ye app homeopathic dawaiyon ki talash ke liye banai gayi hai.",
+    t12:"Ye app sirf maloomati maqasid ke liye hai. Doctor se mashwara karein.",
+    tab1:"Talash", tab2:"Adwiyat", tab3:"About",
+    m1:"Kharish, jald ke masail, ghizai bemariyan, sardi se bhaagna",
+    m2:"Giltiyan, bironi nishanat, peshab ke masail",
+    m3:"Raat mein barhne wale masail, tabahi, zakham",
+    m4:"Saans ki bemariyan, tez bukhar, kamzori",
+    m5:"Sakht giltiyan, khandani tareekh, dair se shifa"
+  }
+};
+
+var currentLang = 'urdu';
+
+/* ================= PAGE NAVIGATION ================= */
+function goPage(pageName){
+  var i, allPages = document.querySelectorAll('.page');
+  for(i=0;i<allPages.length;i++){ allPages[i].classList.remove('active'); }
+  var targetPage = document.getElementById('page-'+pageName);
+  if(targetPage){ targetPage.classList.add('active'); }
+  
+  var allTabs = document.querySelectorAll('.tab-btn');
+  for(i=0;i<allTabs.length;i++){ allTabs[i].classList.remove('active'); }
+  var targetTab = document.getElementById('tab-'+pageName);
+  if(targetTab){ targetTab.classList.add('active'); }
+  
+  window.scrollTo(0,0);
+}
+
+/* ================= LANGUAGE ================= */
+function setLang(lang){
+  currentLang = lang;
+  document.querySelectorAll('.lang-bar button').forEach(function(b){ b.classList.remove('active'); });
+  var btn = document.getElementById('btn-'+lang);
+  if(btn){ btn.classList.add('active'); }
+  
+  var map = texts[lang];
+  if(!map){ return; }
+  var els = document.querySelectorAll('[data-t]');
+  for(var i=0;i<els.length;i++){
+    var key = els[i].getAttribute('data-t');
+    if(map[key] !== undefined){ els[i].textContent = map[key]; }
+  }
+  
+  var inp = document.getElementById('searchInput');
+  if(inp){
+ if(lang==='urdu') inp.placeholder = 'دوائی یا علامات لکھیں...';
+    else if(lang==='english') inp.placeholder = 'Type medicine or symptoms...';
+    else inp.placeholder = 'Dawai ya alamat likhein...';
+  }
+}
+
+/* ================= SEARCH ================= */
+function doSearch(){
+  var q = document.getElementById('searchInput').value.toLowerCase().trim();
+  var box = document.getElementById('searchResults');
+  if(!q){ box.innerHTML = ''; return; }
+  
+  var found = medicineData.filter(function(m){
+    return m.name.toLowerCase().indexOf(q)!==-1 || (m.uses && m.uses.toLowerCase().indexOf(q)!==-1);
+  });
+  
+  if(found.length===0){
+    var msg = currentLang==='urdu'?'کوئی دوائی نہیں ملی':(currentLang==='roman'?'Koi dawai nahi mili':'No medicine found');
+    box.innerHTML = '<div style="text-align:center;padding:30px;color:#888;">'+msg+'</div>';
+    return;
+  }
+  
+  var html = '';
+  for(var i=0;i<found.length;i++){
+    var m = found[i];
+    html += '<div class="med-item" onclick="alert(\''+m.name+': '+m.uses+'\')">'+
+ '<div class="med-name">'+m.name+'</div>'+
+            '<div class="med-use">'+m.uses+'</div></div>';
+  }
+  box.innerHTML = html;
+}
+
+/* ================= MATERIA MEDICA ================= */
+function loadMateria(){
+  var box = document.getElementById('materiaList');
+  if(!box) return;
+  var html = '';
+  for(var i=0;i<medicineData.length;i++){
+    var m = medicineData[i];
+    html += '<div class="med-item" onclick="alert(\''+m.name+': '+m.uses+'\')">'+
+            '<div class="med-name">'+m.name+'</div>'+
+            '<div class="med-use">'+m.uses+'</div></div>';
+  }
+  box.innerHTML = html;
+}
+
+/* ================= START ================= */
+window.onload = function(){
+  setLang('urdu');
+  loadMateria();
+};
+</script>
+</body>
+</html>
