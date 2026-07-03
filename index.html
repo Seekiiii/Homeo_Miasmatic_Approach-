@@ -7,108 +7,97 @@
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#1B3A5C">
 <style>
-* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; background:#f0f5fa; color:#1B3A5C; padding-bottom:90px; }
-
-/* Language Bar */
-.lang-bar { display:flex; justify-content:center; gap:10px; padding:10px; background:#e3f2fd; position:sticky; top:0; z-index:100; }
-.lang-bar button { padding:6px 16px; border:2px solid #1B3A5C; background:white; color:#1B3A5C; border-radius:20px; font-size:13px; font-weight:bold; cursor:pointer; }
-.lang-bar button.active { background:#1B3A5C; color:white; }
-
-/* Header */
-.header { background:#1B3A5C; color:white; text-align:center; padding:20px; }
-.header h1 { font-size:24px; margin-bottom:5px; }
-.header h1 span { color:#7CB342; }
-.header p { font-size:14px; opacity:0.9; }
-
-/* Pages */
-.page { display:none; max-width:600px; margin:0 auto; padding:16px; animation:fadeIn .3s; }
-.page.active { display:block !important; }
-@keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
-
-/* Home Buttons */
-.big-btn { width:100%; padding:18px; margin-bottom:12px; border:none; border-radius:14px; font-size:16px; font-weight:bold; cursor:pointer; color:white; display:flex; align-items:center; justify-content:center; gap:10px; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
-.big-btn:active { transform:scale(0.97); }
-.btn-green { background:#7CB342; }
-.btn-blue { background:#1B3A5C; }
-.btn-red { background:#ef5350; }
-.btn-outline { background:white; color:#1B3A5C; border:2px solid #1B3A5C; }
-
-.warning { background:#ffebee; border:2px solid #ef5350; color:#c62828; padding:12px; border-radius:12px; margin-bottom:16px; font-size:13px; font-weight:bold; text-align:center; }
-
-/* Cards */
-.card { background:white; border-radius:14px; padding:16px; margin-bottom:12px; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
-.card h2 { color:#1B3A5C; margin-bottom:10px; font-size:20px; }
-
-/* Search */
-.search-box { display:flex; gap:8px; margin-bottom:12px; }
-.search-box input { flex:1; padding:12px; border:2px solid #e0e0e0; border-radius:10px; font-size:15px; }
-.search-btn { background:#1B3A5C; color:white; border:none; border-radius:10px; padding:12px 16px; font-weight:bold; cursor:pointer; }
-
-.med-item { background:white; border-radius:10px; padding:14px; margin-bottom:10px; border-right:4px solid #7CB342; cursor:pointer; box-shadow:0 1px 4px rgba(0,0,0,0.04); }
-.med-name { font-weight:bold; color:#1B3A5C; font-size:16px; }
-.med-use { color:#666; font-size:13px; margin-top:4px; }
-
-/* Miasm Cards */
-.miasm-card { background:white; border-radius:12px; padding:16px; margin-bottom:12px; border-top:5px solid; cursor:pointer; box-shadow:0 2px 6px rgba(0,0,0,0.05); }
-.miasm-card.psora { border-top-color:#7CB342; }
-.miasm-card.sycosis { border-top-color:#1B3A5C; }
-.miasm-card.syphilis { border-top-color:#c62828; }
-.miasm-card.tuberculin { border-top-color:#ffa726; }
-.miasm-card.cancer { border-top-color:#7e57c2; }
-.miasm-title { font-weight:bold; font-size:16px; margin-bottom:4px; }
-.miasm-desc { font-size:14px; color:#555; }
-
-/* Bottom Tab Bar */
-.tab-bar { position:fixed; bottom:0; left:0; right:0; background:white; border-top:1px solid #e0e0e0; display:flex; height:70px; box-shadow:0 -4px 12px rgba(0,0,0,0.06); z-index:1000; }
-.tab-btn { flex:1; background:none; border:none; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#999; font-size:11px; font-weight:bold; cursor:pointer; gap:4px; }
-.tab-btn svg { width:24px; height:24px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
-.tab-btn.active { color:#7CB342; }
-.tab-btn.active svg { stroke:#7CB342; }
-
-/* About */
-.about-box { background:white; border-radius:16px; padding:24px; text-align:center; }
-.about-box .logo-big { width:80px; height:80px; margin:0 auto 12px; }
-
-@media (max-width:380px){
- .tab-btn { font-size:10px; }
-  .tab-btn svg { width:22px; height:22px; }
-}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f0f5fa;color:#1B3A5C;padding-bottom:90px}
+.lang-bar{display:flex;justify-content:center;gap:10px;padding:10px;background:#e3f2fd;position:sticky;top:0;z-index:100}
+.lang-bar button{padding:6px 16px;border:2px solid #1B3A5C;background:white;color:#1B3A5C;border-radius:20px;font-size:13px;font-weight:bold;cursor:pointer}
+.lang-bar button.active{background:#1B3A5C;color:white}
+#installBtn{display:none;position:fixed;top:52px;left:50%;transform:translateX(-50%);background:#7CB342;color:white;border:none;border-radius:25px;padding:10px 24px;font-size:14px;font-weight:bold;z-index:200;box-shadow:0 4px 12px rgba(0,0,0,0.25);cursor:pointer}
+.header{background:#1B3A5C;color:white;text-align:center;padding:20px}
+.header h1{font-size:24px;margin-bottom:5px}
+.header h1 span{color:#7CB342}
+.header p{font-size:14px;opacity:.9}
+.page{display:none;max-width:600px;margin:0 auto;padding:16px;animation:fadeIn .3s}
+.page.active{display:block!important}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.big-btn{width:100%;padding:18px;margin-bottom:12px;border:none;border-radius:14px;font-size:16px;font-weight:bold;cursor:pointer;color:white;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
+.big-btn:active{transform:scale(.97)}
+.btn-green{background:#7CB342}
+.btn-blue{background:#1B3A5C}
+.btn-red{background:#ef5350}
+.btn-outline{background:white;color:#1B3A5C;border:2px solid #1B3A5C}
+.warning{background:#ffebee;border:2px solid #ef5350;color:#c62828;padding:12px;border-radius:12px;margin-bottom:16px;font-size:13px;font-weight:bold;text-align:center}
+.card{background:white;border-radius:14px;padding:16px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.card h2{color:#1B3A5C;margin-bottom:10px;font-size:20px}
+.search-box{display:flex;gap:8px;margin-bottom:12px}
+.search-box input{flex:1;padding:12px;border:2px solid #e0e0e0;border-radius:10px;font-size:15px}
+.search-btn{background:#1B3A5C;color:white;border:none;border-radius:10px;padding:12px 16px;font-weight:bold;cursor:pointer}
+.med-item{background:white;border-radius:10px;padding:14px;margin-bottom:10px;border-right:4px solid #7CB342;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,0.04);position:relative}
+.med-name{font-weight:bold;color:#1B3A5C;font-size:16px}
+.med-use{color:#666;font-size:13px;margin-top:4px}
+.custom-tag{position:absolute;top:8px;left:8px;background:#ff9800;color:white;font-size:10px;padding:2px 6px;border-radius:4px;font-weight:bold}
+.add-box{background:#e8f5e9;border:2px dashed #7CB342;border-radius:12px;padding:14px;margin-bottom:16px}
+.add-box h3{color:#1B3A5C;margin-bottom:10px;font-size:16px}
+.add-box input{width:100%;padding:10px;margin-bottom:8px;border:1px solid #ccc;border-radius:8px;font-size:14px}
+.add-btn{width:100%;padding:10px;background:#1B3A5C;color:white;border:none;border-radius:8px;font-weight:bold;font-size:14px;cursor:pointer}
+.miasm-card{background:white;border-radius:12px;padding:16px;margin-bottom:12px;border-top:5px solid;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,0.05)}
+.miasm-card.psora{border-top-color:#7CB342}
+.miasm-card.sycosis{border-top-color:#1B3A5C}
+.miasm-card.syphilis{border-top-color:#c62828}
+.miasm-card.tuberculin{border-top-color:#ffa726}
+.miasm-card.cancer{border-top-color:#7e57c2}
+.miasm-title{font-weight:bold;font-size:16px;margin-bottom:4px}
+.miasm-desc{font-size:14px;color:#555}
+.formula-card{background:white;border-radius:12px;padding:16px;margin-bottom:12px;border-left:5px solid;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,0.05);position:relative}
+.formula-tag{position:absolute;top:12px;right:12px;font-size:10px;padding:3px 8px;border-radius:12px;color:white;font-weight:bold}
+.formula-name{font-weight:bold;font-size:17px;color:#1B3A5C;margin-bottom:4px;padding-right:70px}
+.formula-line{font-size:12px;color:#666}
+.formula-modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:3000;align-items:center;justify-content:center;padding:20px}
+.formula-modal.active{display:flex!important}
+.formula-modal-box{background:white;border-radius:16px;max-width:400px;width:100%;max-height:80vh;overflow-y:auto;padding:20px;position:relative}
+.formula-modal-close{position:absolute;top:10px;right:14px;background:none;border:none;font-size:24px;color:#666;cursor:pointer}
+.formula-modal h3{margin-bottom:10px;color:#1B3A5C;font-size:20px}
+.formula-modal .tag-inline{display:inline-block;padding:3px 10px;border-radius:12px;color:white;font-size:12px;font-weight:bold;margin-bottom:10px}
+.formula-modal h4{margin:14px 0 6px;color:#1B3A5C;font-size:15px;border-bottom:1px solid #eee;padding-bottom:4px}
+.formula-modal p,.formula-modal ul{color:#444;font-size:14px;line-height:1.7}
+.formula-modal ul{padding-left:18px;margin-bottom:8px}
+.tab-bar{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #e0e0e0;display:flex;height:70px;box-shadow:0 -4px 12px rgba(0,0,0,0.06);z-index:1000}
+.tab-btn{flex:1;min-width:0;background:none;border:none;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#999;font-size:9px;font-weight:bold;cursor:pointer;gap:3px;padding:4px 2px}
+.tab-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tab-btn.active{color:#7CB342}
+.tab-btn.active svg{stroke:#7CB342}
+.about-box{background:white;border-radius:16px;padding:24px;text-align:center}
+.about-box .logo-big{width:80px;height:80px;margin:0 auto 12px}
+@media(min-width:400px){.tab-btn{font-size:10px}.tab-btn svg{width:22px;height:22px}}
 </style>
 </head>
 <body>
 
-<!-- LANGUAGE BAR -->
+<button id="installBtn" onclick="installApp()">📲 Install App</button>
+
 <div class="lang-bar">
   <button onclick="setLang('roman')" id="btn-roman">Roman</button>
   <button onclick="setLang('english')" id="btn-english">English</button>
   <button onclick="setLang('urdu')" id="btn-urdu" class="active">اردو</button>
 </div>
 
-<!-- ================= PAGE: HOME ================= -->
+<!-- HOME -->
 <div id="page-home" class="page active">
   <div class="header">
     <h1>Rapid<span>Heal</span></h1>
-    <p data-t="t1">میازمیٹک اپروچ</p>
+    <p data-t="t1">میازمیٹک ریپڈ ہیل</p>
   </div>
   <div style="padding:16px;">
-    <div class="warning" data-t="warn">⚠️ دوائی استعمال کرنے سے پہلے ہومیوپیتھک ڈاکٹر سے مشورہ کریں</div>
-    <button class="big-btn btn-green" onclick="goPage('search')">
-      <span>🔍</span><span data-t="t2">علامات لکھیں، دوائیں تلاش کریں</span>
-    </button>
-    <button class="big-btn btn-blue" onclick="goPage('materia')">
-      <span>📋</span><span data-t="t3">تمام ادویات</span>
-    </button>
-    <button class="big-btn btn-outline" onclick="goPage('miasms')">
-      <span>🛡️</span><span data-t="t4">میازمیٹک نقطہ نظر</span>
-    </button>
-    <button class="big-btn btn-red" onclick="goPage('about')">
-      <span>ℹ️</span><span data-t="t5">ایپ کے بارے میں</span>
-    </button>
+    <div class="warning" data-t="warn">⚠️ دوائی استعمال کرنے سے پہلے ڈاکٹر سے مشورہ کریں</div>
+    <button class="big-btn btn-green" onclick="goPage('search')"><span>🔍</span><span data-t="t2">علامات لکھیں، دوائیں تلاش کریں</span></button>
+    <button class="big-btn btn-blue" onclick="goPage('materia')"><span>📋</span><span data-t="t3">تمام ادویات</span></button>
+    <button class="big-btn btn-outline" onclick="goPage('miasms')"><span>🛡️</span><span data-t="t4">میازمیٹک نقطہ نظر</span></button>
+    <button class="big-btn btn-outline" onclick="goPage('formulas')"><span>📝</span><span data-t="tFormBtn">میازمیٹک فارمولے</span></button>
+    <button class="big-btn btn-red" onclick="goPage('about')"><span>ℹ️</span><span data-t="t5">ایپ کے بارے میں</span></button>
   </div>
 </div>
 
-<!-- ================= PAGE: SEARCH ================= -->
+<!-- SEARCH -->
 <div id="page-search" class="page">
   <div class="card">
     <h2>🔍 <span data-t="t6">تلاش</span></h2>
@@ -120,43 +109,41 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif
   <div id="searchResults"></div>
 </div>
 
-<!-- ================= PAGE: MIASMS ================= -->
+<!-- MIASMS -->
 <div id="page-miasms" class="page">
   <div class="card">
     <h2>🛡️ <span data-t="t8">میازمیٹک نقطہ نظر</span></h2>
     <p style="color:#666;font-size:14px;" data-t="t9">پانچ بنیادی میازمز کی تفصیل</p>
   </div>
-  <div class="miasm-card psora" onclick="alert('Psora: Sulphur, Psorinum')">
- <div class="miasm-title">1. Psora (سورا)</div>
-    <div class="miasm-desc" data-t="m1">خارش، جلد کے مسائل، غذائی بیماریاں، سردی سے بھاگنا</div>
-  </div>
-  <div class="miasm-card sycosis" onclick="alert('Sycosis: Thuja, Medorrhinum')">
-    <div class="miasm-title">2. Sycosis (سائیکوسس)</div>
-    <div class="miasm-desc" data-t="m2">گلٹیاں، بیرونی نشانات، پیشاب کے مسائل</div>
-  </div>
-  <div class="miasm-card syphilis" onclick="alert('Syphilis: Merc Sol, Syphilinum')">
-    <div class="miasm-title">3. Syphilis (سفلس)</div>
-    <div class="miasm-desc" data-t="m3">رات میں بڑھنے والے مسائل، کسی عضو میں بگاڑ، زخم</div>
-  </div>
-  <div class="miasm-card tuberculin" onclick="alert('Tuberculin: Bacillinum, Tuberculinum')">
- <div class="miasm-title">4. Tuberculin ٹیوبرکولینم)</div>
-    <div class="miasm-desc" data-t="m4">سانس کی بیماریاں، تیز بخار، کمزوری</div>
-  </div>
-  <div class="miasm-card cancer" onclick="alert('Cancer: Carcinosin, Scrophularia')">
-    <div class="miasm-title">5. Cancer (کینسر)</div>
-    <div class="miasm-desc" data-t="m5">سخت گلٹیاں، خاندانی ہسٹری، دیر سے شفا</div>
-  </div>
+  <div class="miasm-card psora" onclick="alert('Psora: Sulphur, Psorinum')"><div class="miasm-title">1. Psora (سوریازیس)</div><div class="miasm-desc" data-t="m1">خارش، جلد کے مسائل، غذائی بیماریاں، سردی سے بھاگنا</div></div>
+  <div class="miasm-card sycosis" onclick="alert('Sycosis: Thuja, Medorrhinum')"><div class="miasm-title">2. Sycosis (سائیکوسس)</div><div class="miasm-desc" data-t="m2">گولٹیاں، بیرونی نشانات، پیشاب کے مسائل</div></div>
+  <div class="miasm-card syphilis" onclick="alert('Syphilis: Merc Sol, Syphilinum')"><div class="miasm-title">3. Syphilis (سائفلس)</div><div class="miasm-desc" data-t="m3">رات میں بڑھنے والے مسائل، تباہی، زخم</div></div>
+  <div class="miasm-card tuberculin" onclick="alert('Tuberculin: Bacillinum, Tuberculinum')"><div class="miasm-title">4. Tuberculin (ٹیوبرکولن)</div><div class="miasm-desc" data-t="m4">سانس کی بیماریاں، تیز بخار، کمزوری</div></div>
+  <div class="miasm-card cancer" onclick="alert('Cancer: Carcinosin, Scrophularia')"><div class="miasm-title">5. Cancer (کینسر)</div><div class="miasm-desc" data-t="m5">سخت گلٹیاں، خاندانی تاریخ، دیر سے شفا</div></div>
 </div>
 
-<!-- ================= PAGE: MATERIA ================= -->
-<div id="page-materia" class="page">
+<!-- FORMULAS -->
+<div id="page-formulas" class="page">
   <div class="card">
-    <h2>📋 <span data-t="t10">میٹیریا میڈیکا</span></h2>
+    <h2>📝 <span data-t="tFormTitle">میازمیٹک فارمولے</span></h2>
+    <p style="color:#666;font-size:14px;" data-t="tFormSub">بیماری چنیں اور میازمیٹک علاج دیکھیں</p>
+  </div>
+  <div id="formulasList"></div>
+</div>
+
+<!-- MATERIA -->
+<div id="page-materia" class="page">
+  <div class="card"><h2>📋 <span data-t="t10">میٹیریا میڈیکا</span></h2></div>
+  <div class="add-box">
+    <h3>➕ <span data-t="addTitle">اپنی دوائی شامل کریں</span></h3>
+    <input type="text" id="newMedName" placeholder="دوائی کا نام">
+    <input type="text" id="newMedUse" placeholder="علامات / فائدے">
+    <button class="add-btn" onclick="addCustomMedicine()" data-t="addBtn">محفوظ کریں</button>
   </div>
   <div id="materiaList"></div>
 </div>
 
-<!-- ================= PAGE: ABOUT ================= -->
+<!-- ABOUT -->
 <div id="page-about" class="page">
   <div class="about-box">
     <svg class="logo-big" viewBox="0 0 100 100" fill="none">
@@ -169,11 +156,25 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif
     </svg>
     <h2 style="color:#1B3A5C;">Rapid<span style="color:#7CB342;">Heal</span></h2>
     <p style="color:#666;font-size:14px;margin:12px 0;" data-t="t11">یہ ایپ ہومیوپیتھک دوائیوں کی تلاش اور میازمیٹک نقطہ نظر سے مدد کے لیے بنائی گئی ہے۔</p>
-    <p style="color:#c62828;font-size:12px;font-weight:bold;" data-t="t12">یہ ایپ صرف پروفیشنل ہومیوپیتھک ڈاکٹر اور معلوماتی مقاصد کے لیے ہے۔ کسی بھی دوائی کے استعمال سے پہلے اپنے ہومیوپیتھک ڈاکٹر سے رجوع کریں۔</p>
+    <p style="color:#c62828;font-size:12px;font-weight:bold;" data-t="t12">یہ ایپ صرف معلوماتی مقاصد کے لیے ہے۔ کسی بھی دوائی کے استعمال سے پہلے اپنے ڈاکٹر سے مشورہ کریں۔</p>
   </div>
 </div>
 
-<!-- ================= BOTTOM TAB BAR ================= -->
+<!-- FORMULA MODAL -->
+<div id="formulaModal" class="formula-modal" onclick="closeFormula(event)">
+  <div class="formula-modal-box" onclick="event.stopPropagation()">
+    <button class="formula-modal-close" onclick="closeFormula()">&times;</button>
+    <h3 id="fmName"></h3>
+    <span id="fmTag" class="tag-inline"></span>
+    <p id="fmDesc" style="margin-bottom:8px"></p>
+    <h4 data-t="fmSym">علامات</h4>
+    <ul id="fmSymptoms"></ul>
+    <h4 data-t="fmRem">تجویز کردہ ادویات</h4>
+    <ul id="fmRemedies"></ul>
+  </div>
+</div>
+
+<!-- TAB BAR (6 Tabs) -->
 <div class="tab-bar">
   <button class="tab-btn active" id="tab-home" onclick="goPage('home')">
     <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
@@ -184,8 +185,12 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif
     <span data-t="tab1">تلاش</span>
   </button>
   <button class="tab-btn" id="tab-miasms" onclick="goPage('miasms')">
-    <svg viewBox="0 0 24 24" style="stroke-width:1.6;"><path d="M12 2 L20 5 L20 11 Q20 17 12 22 Q4 17 4 11 L4 5 Z"/><path d="M8 7 L8 17 M8 7 L12 7 Q14 7 14 10 Q14 13 12 13 L8 13 M11 13 L14 17" fill="none"/><circle cx="18" cy="5" r="3" fill="#7CB342" stroke="none"/><path d="M18 3.5 L18 6.5 M16.5 5 L19.5 5" stroke="white" stroke-width="1.2"/></svg>
+    <svg viewBox="0 0 24 24"><path d="M12 2 L20 5 L20 11 Q20 17 12 22 Q4 17 4 11 L4 5 Z"/></svg>
     <span>Miasms</span>
+  </button>
+  <button class="tab-btn" id="tab-formulas" onclick="goPage('formulas')">
+    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+    <span data-t="tabForm">فارمولے</span>
   </button>
   <button class="tab-btn" id="tab-materia" onclick="goPage('materia')">
     <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
@@ -198,35 +203,87 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif
 </div>
 
 <script>
-/* ================= DATA ================= */
-var medicineData = [
-  {name:"Aconite",uses:"بخار، گھبراہٹ، سردی"},
-  {name:"Allium Cepa",uses:"آ نکھوں سے سادہ پانی، الرجی"},
-  {name:"Arnica",uses:"چوٹ، نیل، درد"},
-  {name:"Arsenicum",uses:"فوڈ پوائزننگ، بے چینی"},
-  {name:"Belladonna",uses:"تیز بخار، سر درد"},
-  {name:"Bryonia",uses:"خشک کھانسی، جوڑوں کا درد"},
-  {name:"Calcarea Carb",uses:"دانت نکلنا، ٹھنڈا پسینہ"},
-  {name:"Cantharis",uses:"جلن، پیشاب میں جلن"},
-  {name:"Chamomilla",uses:"دانت نکلنا، چڑچڑاپن"},
-  {name:"Gelsemium",uses:"فلو، کمزوری، کانپنا"},
-  {name:"Hypericum",uses:"نرو کی چوٹ، زخم"},
-  {name:"Ignatia",uses:"غم، جذباتی صدمہ"},
-  {name:"Ipecac",uses:"متلی، الٹی"},
-  {name:"Lachesis",uses:"گرم چہرہ، رشک"},
-  {name:"Ledum",uses:"کاٹنے کا زخم، آنکھ کا نیل"},
-  {name:"Magnesia Phos",uses:"مرچ، کولک"},
-  {name:"Mercurius",uses:"گلے کی سوزش، غدود کا سوجنا"},
-  {name:"Natrum Mur",uses:"آدھے سر کا درد، غم"},
-  {name:"Nux Vomica",uses:"بدہضمی، چڑچڑاپن"},
-  {name:"Phosphorus",uses:"جلن کا درد، خوف"},
-  {name:"Pulsatilla",uses:"زکام، رونا، بدلتے علامات"},
-  {name:"Rhus Tox",uses:"جوڑوں کا درد، زہریلی بیل"},
-  {name:"Silicea",uses:"کانٹا، پیپ، سردی"},
-  {name:"Sulphur",uses:"جلد کی خارش، جلن"}
+// Service Worker
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(err){console.log('SW fail:',err);});}
+
+// Install App
+var deferredPrompt;
+window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();deferredPrompt=e;var btn=document.getElementById('installBtn');if(btn)btn.style.display='block';});
+function installApp(){if(!deferredPrompt)return;deferredPrompt.prompt();deferredPrompt.userChoice.then(function(choice){if(choice.outcome==='accepted'){document.getElementById('installBtn').style.display='none';}deferredPrompt=null;});}
+
+// Default Medicines
+var defaultMedicines=[
+  {name:"Aconite",uses:"بخار، گھبراہٹ، سردی"},{name:"Allium Cepa",uses:"نسکاسہ، الرجی"},{name:"Arnica",uses:"چوٹ، نیل، درد"},{name:"Arsenicum",uses:"فوڈ پوائزننگ، بے چینی"},
+  {name:"Belladonna",uses:"تیز بخار، سر درد"},{name:"Bryonia",uses:"خشک کھانسی، جوڑوں کا درد"},{name:"Calcarea Carb",uses:"دانت نکلنا، ٹھنڈا پسینہ"},{name:"Cantharis",uses:"جلن، پیشاب میں جلن"},
+  {name:"Chamomilla",uses:"دانت نکلنا، چڑچڑاپن"},{name:"Gelsemium",uses:"فلو، کمزوری، کانپنا"},{name:"Hypericum",uses:"نسانی چوٹ، زخم"},{name:"Ignatia",uses:"غم، جذبی صدمہ"},
+  {name:"Ipecac",uses:"متلی، الٹی"},{name:"Lachesis",uses:"گرم چہرہ، رشک"},{name:"Ledum",uses:"کاٹنے کا زخم، آنکھ کا نیل"},{name:"Magnesia Phos",uses:"مرچ، کولک"},
+  {name:"Mercurius",uses:"گلے کی سوزش، غدود کا سوجنا"},{name:"Natrum Mur",uses:"آدھے سر کا درد، غم"},{name:"Nux Vomica",uses:"بدہضمی، چڑچڑاپن"},{name:"Phosphorus",uses:"جلن کا درد، خوف"},
+  {name:"Pulsatilla",uses:"زکام، رونا، بدلتے علامات"},{name:"Rhus Tox",uses:"جوڑوں کا درد، زہریلی بیل"},{name:"Silicea",uses:"کانٹا، پیپ، سردی"},{name:"Sulphur",uses:"جلد کی خارش، جلن"}
 ];
 
-/* ================= TRANSLATIONS ================= */
+function getCustomMeds(){try{var s=localStorage.getItem('rapidheal_custom');if(s)return JSON.parse(s);}catch(e){}return[];}
+function saveCustomMeds(list){try{localStorage.setItem('rapidheal_custom',JSON.stringify(list));}catch(e){}}
+function getAllMedicines(){var c=getCustomMeds(),a=defaultMedicines.slice();for(var i=0;i<c.length;i++)a.push({name:c[i].name,uses:c[i].uses,custom:true});return a;}
+
+// Formulas Data
+var formulas=[
+  {id:1,miasm:'psora',color:'#7CB342',
+    name:{urdu:'ٹیفائیڈ',english:'Typhoid',roman:'Typhoid'},
+    desc:{urdu:'تیز بخار، کمزوری، پیٹ کی خرابی',english:'High fever, weakness, abdominal issues',roman:'Tez bukhar, kamzori, pet ki kharabi'},
+    symptoms:{urdu:['39-40°C بخار','سر درد','پہلے ہفتے نزلہ، پھر خشک کھانسی','پیٹ نرم، پتلی دست'],english:['39-40°C fever','Headache','Coryza first week then dry cough','Soft abdomen, loose stools'],roman:['39-40°C bukhar','Sir dard','Pehle hafte nazla, phir sukhi khansi','Pet naram, patli dast']},
+    remedies:{urdu:['Baptisia (early stages)','Bryonia (خشک علامات)','Arsenicum (آگ جلن)','Phosphorus (کمزوری)'],english:['Baptisia (early stages)','Bryonia (dry symptoms)','Arsenicum (burning)','Phosphorus (weakness)'],roman:['Baptisia (shuruati marhalah)','Bryonia (sukhi alamat)','Arsenicum (aag jalan)','Phosphorus (kamzori)']}
+  },
+  {id:2,miasm:'psora',color:'#7CB342',
+    name:{urdu:'ایگزیما / جلد کی الرجی',english:'Eczema / Skin Allergy',roman:'Eczema / Jild ki allergy'},
+    desc:{urdu:'خشک خارش، لال پھڑیاں، جلد کا پھٹنا',english:'Dry itching, red patches, cracked skin',roman:'Sukhi kharish, laal pharray, jild ka phatna'},
+    symptoms:{urdu:['سردی میں بڑھنے والی خارش','خشک پپڑی دار جلد','رات کو خارش زیادہ','پسینے سے جلن'],english:['Itching worse in cold','Dry scaly skin','Night itching worse','Burning after sweat'],roman:['Sardi mein barhne wali kharish','Sukhi papri dar jild','Raat ko kharish zyada','Paseene se jalan']},
+    remedies:{urdu:['Sulphur (Psora king)','Graphites (پھٹنے والے زخم)','Psorinum (سردی سے بڑھتا ہو)','Arsenicum (جلن والی خارش)'],english:['Sulphur (Psora king)','Graphites (cracked eruptions)','Psorinum (worse from cold)','Arsenicum (burning itch)'],roman:['Sulphur (Psora king)','Graphites (phatne wale zakham)','Psorinum (sardi se barhta hua)','Arsenicum (jalan wali kharish)']}
+  },
+  {id:3,miasm:'sycosis',color:'#1B3A5C',
+    name:{urdu:'گِرتیاں (وارٹس)',english:'Warts',roman:'Girtyan (Warts)'},
+    desc:{urdu:'جلد پر گولٹیوں، موٹی جلد، گانٹھیں',english:'Skin growths, thick skin, nodules',roman:'Jild par giltiyan, moti jild, ganthein'},
+    symptoms:{urdu:['جلد پر گولٹیوں کا نکلنا','ایک سے زیادہ گانٹھیں','پیشاب کے مسائل (سائیکوٹک تاریخ)','موٹا ہونا'],english:['Warts on skin','Multiple growths','Urinary issues (sycotic history)','Weight gain'],roman:['Jild par giltiyon ka niklna','Aik se zyada ganthein','Peshab ke masail (sycotic tareekh)','Mota hona']},
+    remedies:{urdu:['Thuja Occidentalis (وارٹس کی ملکہ)','Nitric Acid (تیز درد والے زخم)','Causticum (بڑے موٹے وارٹس)','Medorrhinum (سائیکوٹک مiazam)'],english:['Thuja Occidentalis (king of warts)','Nitric Acid (painful cracks)','Causticum (large old warts)','Medorrhinum (sycotic miasm)'],roman:['Thuja Occidentalis (warts ki malika)','Nitric Acid (tez dard wale zakham)','Causticum (bare motey warts)','Medorrhinum (sycotic miazam)']}
+  },
+  {id:4,miasm:'tuberculin',color:'#ffa726',
+    name:{urdu:'دمہ / سانس کی بیماری',english:'Asthma / Respiratory',roman:'Dama / Saans ki bemari'},
+    desc:{urdu:'سانس کی تکلیف، رات کو بڑھنے والی کھانسی، دباؤ',english:'Breathlessness, night cough, oppression',roman:'Saans ki takleef, raat ko barhne wali khansi, dabao'},
+    symptoms:{urdu:['صبح 2-4 بجے کھانسی','سانس کا پھولنا','سردی سے بڑھتا ہوا دما','پسینا آنا، کمزوری'],english:['Cough 2-4 AM','Asthmatic oppression','Cold aggravation','Sweat, weakness'],roman:['Subah 2-4 baje khansi','Saans ka phulna','Sardi se barhta hua dama','Paseena ana, kamzori']},
+    remedies:{urdu:['Tuberculinum (ٹیوبرکولن مiazam)','Arsenicum (آگ اور جلن)','Phosphorus (سانس کی تنگی)','Bacillinum (خاندانی TB تاریخ)'],english:['Tuberculinum (tubercular miasm)','Arsenicum (burning)','Phosphorus (chest oppression)','Bacillinum (family TB history)'],roman:['Tuberculinum (tuberculin miazam)','Arsenicum (aag aur jalan)','Phosphorus (saans ki tangi)','Bacillinum (khandani TB tareekh)']}
+  },
+  {id:5,miasm:'syphilis',color:'#c62828',
+    name:{urdu:'جوڑوں کا سخت درد (آرتھرائٹس)',english:'Arthritis / Joint Pain',roman:'Joron ka sakht dard (Arthritis)'},
+    desc:{urdu:'جوڑوں میں سختی، درد، تباہی والے علامات',english:'Joint stiffness, pain, destructive symptoms',roman:'Joron mein sakhti, dard, tabahi wale alamat'},
+    symptoms:{urdu:['رات کو بڑھتا ہوا درد','سردی سے آرام، گرمائی سے تکلیف','جوڑوں کی سختی صبح','ہڈیوں کی تباہی کا خوف'],english:['Night aggravation','Better cold, worse heat','Morning stiffness','Fear of bone destruction'],roman:['Raat ko barhta hua dard','Sardi se araam, garmi se takleef','Joron ki sakhti subah','Haddiyon ki tabahi ka khauf']},
+    remedies:{urdu:['Merc Sol (پھیلتے ہوئے زخم)','Phytolacca (گانٹھوں کا درد)','Syphilinum (سائفلیٹک مiazam)','Aurum Met (ہڈیوں کی تباہی)'],english:['Merc Sol (spreading ulcers)','Phytolacca (nodular pain)','Syphilinum (syphilitic miasm)','Aurum Met (bone destruction)'],roman:['Merc Sol (phelte hue zakham)','Phytolacca (ganton ka dard)','Syphilinum (syphilitic miazam)','Aurum Met (haddiyon ki tabahi)']}
+  },
+  {id:6,miasm:'tuberculin',color:'#ffa726',
+    name:{urdu:'TB / تپ دق',english:'Tuberculosis',roman:'TB / Tap e diq'},
+    desc:{urdu:'خون کی کھانسی، تیز بخار، کمزوری، پسینا',english:'Bloody cough, high fever, wasting, sweat',roman:'Khoon ki khansi, tez bukhar, kamzori, paseena'},
+    symptoms:{urdu:['شام کو بخار چڑھنا','خون آمیز بلغم','تیز پسینا رات کو','وزن میں تیزی سے کمی'],english:['Evening fever rise','Bloody sputum','Profuse night sweats','Rapid weight loss'],roman:['Sham ko bukhar charhna','Khoon ameez balgham','Tez paseena raat ko','Wazan mein taizi se kami']},
+    remedies:{urdu:['Bacillinum (TB روک تھام)','Tuberculinum (ٹیوبرکولن مiazam)','Phosphorus (خون کی کھانسی)','Silicea (پیپ والے زخم)'],english:['Bacillinum (TB preventive)','Tuberculinum (tubercular miasm)','Phosphorus (bloody cough)','Silicea (suppurating ulcers)'],roman:['Bacillinum (TB rok tham)','Tuberculinum (tuberculin miazam)','Phosphorus (khoon ki khansi)','Silicea (peep wale zakham)']}
+  },
+  {id:7,miasm:'psora',color:'#7CB342',
+    name:{urdu:'آدھے سر کا درد (Migraine)',english:'Migraine / Half Headache',roman:'Aadhe sir ka dard (Migraine)'},
+    desc:{urdu:'سر کا آدھا درد، متلی، روشنی سے تکلیف',english:'Half sided headache, nausea, light sensitivity',roman:'Sir ka adha dard, matli, roshni se takleef'},
+    symptoms:{urdu:['سر کے ایک حصے میں دھڑکنا','روشنی سے بڑھتا ہوا درد','متلی یا الٹی کے ساتھ','دباؤ سے آرام'],english:['Throbbing one side','Light aggravation','Nausea or vomiting','Pressure amelioration'],roman:['Sir ke hisse mein dhadakna','Roshni se barhta dard','Matli ya ulti ke sath','Dabao se araam']},
+    remedies:{urdu:['Spigelia (بائیں آدھا سر)','Sanguinaria (دائیں آدھا سر)','Natrum Mur (سورج کی روشنی سے)','Iris Versicolor (متلی والی migraine)'],english:['Spigelia (left side)','Sanguinaria (right side)','Natrum Mur (sun headache)','Iris Versicolor (nauseous migraine)'],roman:['Spigelia (bayen adha sir)','Sanguinaria (dayen adha sir)','Natrum Mur (sooraj ki roshni se)','Iris Versicolor (matli wali migraine)']}
+  },
+  {id:8,miasm:'sycosis',color:'#1B3A5C',
+    name:{urdu:'بواسیر (Piles)',english:'Piles / Hemorrhoids',roman:'Bawaseer (Piles)'},
+    desc:{urdu:'rectal درد، خون آنا، گولٹیوں کا محسوس ہونا',english:'Rectal pain, bleeding, sensation of lumps',roman:'Rectal dard, khoon ana, giltiyon ka mehsoos hona'},
+    symptoms:{urdu:['پاخانہ میں خون','پاخانہ کے بعد درد','گولٹی کا محسوس ہونا','گرمی سے آرام، سردی سے تکلیف'],english:['Bleeding with stool','Pain after stool','Lump sensation','Better heat, worse cold'],roman:['Paikhane mein khoon','Paikhane ke baad dard','Gilti ka mehsoos hona','Garmi se araam, sardi se takleef']},
+    remedies:{urdu:['Aesculus (خشک بواسیر)','Collinsonia (گولٹیوں کے ساتھ)','Nux Vomica (چڑچڑاپن اور بندش)','Thuja (سائیکوٹک تاریخ)'],english:['Aesculus (dry piles)','Collinsonia (with nodules)','Nux Vomica (irritability & constipation)','Thuja (sycotic history)'],roman:['Aesculus (sukhi bawaseer)','Collinsonia (giltiyon ke sath)','Nux Vomica (chirchirapan aur bandish)','Thuja (sycotic tareekh)']}
+  },
+  {id:9,miasm:'psora',color:'#7CB342',
+    name:{urdu:'پیٹ کی خرابی / اسہال',english:'Diarrhea / Indigestion',roman:'Pet ki kharabi / Dast'},
+    desc:{urdu:'پتلی دست، پیٹ میں درد، بدہضمی',english:'Loose stools, abdominal pain, indigestion',roman:'Patli dast, pet mein dard, badhazmi'},
+    symptoms:{urdu:['پتلی یا پانی جیسی دست','پیٹ میں مرچ','کھانے کے بعد فوراً دست','تھکن اور کمزوری'],english:['Watery loose stools','Cutting pain in abdomen','Stool immediately after eating','Fatigue and weakness'],roman:['Patli ya pani jaisi dast','Pet mein mirch','Khane ke foran baad dast','Thakan aur kamzori']},
+    remedies:{urdu:['Podophyllum (پانی جیسی دست)','Arsenicum Album (جلن والا اسہال)','China Officinalis (بخار کے بعد)','Ipecac (متلی کے ساتھ)'],english:['Podophyllum (watery stool)','Arsenicum Album (burning diarrhea)','China Officinalis (after fever)','Ipecac (with nausea)'],roman:['Podophyllum (pani jaisi dast)','Arsenicum Album (jalan wala ishal)','China Officinalis (bukhar ke baad)','Ipecac (matli ke sath)']}
+  }
+];
+
+// ================= TRANSLATIONS =================
 var texts = {
   urdu: {
     t1:"میازمیٹک ریپڈ ہیل", warn:"⚠️ دوائی استعمال کرنے سے پہلے ڈاکٹر سے مشورہ کریں",
@@ -237,12 +294,16 @@ var texts = {
     t10:"میٹیریا میڈیکا", t11:"یہ ایپ ہومیوپیتھک دوائیوں کی تلاش اور میازمیٹک نقطہ نظر سے مدد کے لیے بنائی گئی ہے۔",
     t12:"یہ ایپ صرف معلوماتی مقاصد کے لیے ہے۔ کسی بھی دوائی کے استعمال سے پہلے اپنے ڈاکٹر سے مشورہ کریں۔",
     tab1:"تلاش", tab2:"ادویات", tab3:"ایباؤٹ",
+    tabForm:"فارمولے", tFormBtn:"میازمیٹک فارمولے",
+    tFormTitle:"میازمیٹک فارمولے", tFormSub:"بیماری چنیں اور میازمیٹک علاج دیکھیں",
     m1:"خارش، جلد کے مسائل، غذائی بیماریاں، سردی سے بھاگنا",
     m2:"گولٹیاں، بیرونی نشانات، پیشاب کے مسائل",
     m3:"رات میں بڑھنے والے مسائل، تباہی، زخم",
     m4:"سانس کی بیماریاں، تیز بخار، کمزوری",
-    m5:"سخت گلٹیاں، خاندانی تاریخ، دیر سے شفا"
- },
+    m5:"سخت گلٹیاں، خاندانی تاریخ، دیر سے شفا",
+    addTitle:"اپنی دوائی شامل کریں", addBtn:"محفوظ کریں",
+    fmSym:"علامات", fmRem:"تجویز کردہ ادویات"
+  },
   english: {
     t1:"Homeopathic Medicine Finder", warn:"⚠️ Consult doctor before using medicine",
     t2:"Search Remedies", t3:"All Medicines",
@@ -252,11 +313,15 @@ var texts = {
     t10:"Materia Medica", t11:"This app helps find homeopathic remedies.",
     t12:"For informational purposes only. Consult your doctor.",
     tab1:"Search", tab2:"Materia", tab3:"About",
+    tabForm:"Formulas", tFormBtn:"Miasmatic Formulas",
+    tFormTitle:"Miasmatic Formulas", tFormSub:"Select disease to see miasmatic treatment",
     m1:"Itching, skin issues, digestive problems, cold sensitivity",
     m2:"Warts, external growths, urinary issues",
     m3:"Night aggravation, destruction, ulcers",
     m4:"Respiratory issues, high fever, weakness",
-    m5:"Hard lumps, family history, slow healing"
+    m5:"Hard lumps, family history, slow healing",
+    addTitle:"Add Your Own Medicine", addBtn:"Save",
+    fmSym:"Symptoms", fmRem:"Recommended Remedies"
   },
   roman: {
     t1:"Homeopathic Medicine Finder", warn:"⚠️ Dawai istemal se pehle doctor se mashwara karein",
@@ -267,19 +332,24 @@ var texts = {
     t10:"Materia Medica", t11:"Ye app homeopathic dawaiyon ki talash ke liye banai gayi hai.",
     t12:"Ye app sirf maloomati maqasid ke liye hai. Doctor se mashwara karein.",
     tab1:"Talash", tab2:"Adwiyat", tab3:"About",
-    m1:"Kharish, jald ke masail, ghizai bemariyan, sardi se bhaagna",
+    tabForm:"Formulas", tFormBtn:"Miasmatic Formulas",
+    tFormTitle:"Miasmatic Formulas", tFormSub:"Bemari chunain aur miasmatic ilaj dekhain",
+    m1:"Kharish, jild ke masail, ghizai bemariyan, sardi se bhaagna",
     m2:"Giltiyan, bironi nishanat, peshab ke masail",
     m3:"Raat mein barhne wale masail, tabahi, zakham",
     m4:"Saans ki bemariyan, tez bukhar, kamzori",
-    m5:"Sakht giltiyan, khandani tareekh, dair se shifa"
+    m5:"Sakht giltiyan, khandani tareekh, dair se shifa",
+    addTitle:"Apni dawai shamil karein", addBtn:"Mehfooz karein",
+    fmSym:"Alamat", fmRem:"Tajweez karda adwiyat"
   }
 };
 
 var currentLang = 'urdu';
 
-/* ================= PAGE NAVIGATION ================= */
+// ================= NAVIGATION =================
 function goPage(pageName){
-  var i, allPages = document.querySelectorAll('.page');
+  var i;
+  var allPages = document.querySelectorAll('.page');
   for(i=0;i<allPages.length;i++){ allPages[i].classList.remove('active'); }
   var targetPage = document.getElementById('page-'+pageName);
   if(targetPage){ targetPage.classList.add('active'); }
@@ -290,9 +360,11 @@ function goPage(pageName){
   if(targetTab){ targetTab.classList.add('active'); }
   
   window.scrollTo(0,0);
+  if(pageName==='formulas') renderFormulas();
+  if(pageName==='materia') loadMateria();
 }
 
-/* ================= LANGUAGE ================= */
+// ================= LANGUAGE =================
 function setLang(lang){
   currentLang = lang;
   document.querySelectorAll('.lang-bar button').forEach(function(b){ b.classList.remove('active'); });
@@ -300,7 +372,7 @@ function setLang(lang){
   if(btn){ btn.classList.add('active'); }
   
   var map = texts[lang];
-  if(!map){ return; }
+  if(!map) return;
   var els = document.querySelectorAll('[data-t]');
   for(var i=0;i<els.length;i++){
     var key = els[i].getAttribute('data-t');
@@ -309,21 +381,26 @@ function setLang(lang){
   
   var inp = document.getElementById('searchInput');
   if(inp){
- if(lang==='urdu') inp.placeholder = 'دوائی یا علامات لکھیں...';
+    if(lang==='urdu') inp.placeholder = 'دوائی یا علامات لکھیں...';
     else if(lang==='english') inp.placeholder = 'Type medicine or symptoms...';
     else inp.placeholder = 'Dawai ya alamat likhein...';
   }
+  if(document.getElementById('page-formulas').classList.contains('active')) renderFormulas();
 }
 
-/* ================= SEARCH ================= */
+// ================= SEARCH =================
 function doSearch(){
   var q = document.getElementById('searchInput').value.toLowerCase().trim();
   var box = document.getElementById('searchResults');
   if(!q){ box.innerHTML = ''; return; }
   
-  var found = medicineData.filter(function(m){
-    return m.name.toLowerCase().indexOf(q)!==-1 || (m.uses && m.uses.toLowerCase().indexOf(q)!==-1);
-  });
+  var all = getAllMedicines();
+  var found = [];
+  for(var i=0;i<all.length;i++){
+    if(all[i].name.toLowerCase().indexOf(q)!==-1 || (all[i].uses && all[i].uses.toLowerCase().indexOf(q)!==-1)){
+      found.push(all[i]);
+    }
+  }
   
   if(found.length===0){
     var msg = currentLang==='urdu'?'کوئی دوائی نہیں ملی':(currentLang==='roman'?'Koi dawai nahi mili':'No medicine found');
@@ -334,28 +411,101 @@ function doSearch(){
   var html = '';
   for(var i=0;i<found.length;i++){
     var m = found[i];
-    html += '<div class="med-item" onclick="alert(\''+m.name+': '+m.uses+'\')">'+
- '<div class="med-name">'+m.name+'</div>'+
-            '<div class="med-use">'+m.uses+'</div></div>';
-  }
-  box.innerHTML = html;
-}
-
-/* ================= MATERIA MEDICA ================= */
-function loadMateria(){
-  var box = document.getElementById('materiaList');
-  if(!box) return;
-  var html = '';
-  for(var i=0;i<medicineData.length;i++){
-    var m = medicineData[i];
-    html += '<div class="med-item" onclick="alert(\''+m.name+': '+m.uses+'\')">'+
+    var tag = m.custom ? '<span class="custom-tag">USER</span>' : '';
+    html += '<div class="med-item" onclick="alert(\''+m.name.replace(/'/g,"\\'")+': '+m.uses.replace(/'/g,"\\'")+'\')">'+
+            tag+
             '<div class="med-name">'+m.name+'</div>'+
             '<div class="med-use">'+m.uses+'</div></div>';
   }
   box.innerHTML = html;
 }
 
-/* ================= START ================= */
+// ================= ADD CUSTOM MEDICINE =================
+function addCustomMedicine(){
+  var n = document.getElementById('newMedName').value.trim();
+  var u = document.getElementById('newMedUse').value.trim();
+  if(!n){
+    var msg = currentLang==='urdu'?'نام لکھیں':(currentLang==='roman'?'Naam likhein':'Enter name');
+    alert(msg); return;
+  }
+  var list = getCustomMeds();
+  list.push({name:n, uses:u||''});
+  saveCustomMeds(list);
+  document.getElementById('newMedName').value = '';
+  document.getElementById('newMedUse').value = '';
+  loadMateria();
+  var msg2 = currentLang==='urdu'?'دوائی شامل ہو گئی':(currentLang==='roman'?'Dawai shamil ho gayi':'Medicine added');
+  alert(msg2);
+}
+
+// ================= LOAD MATERIA =================
+function loadMateria(){
+  var box = document.getElementById('materiaList');
+  if(!box) return;
+  var all = getAllMedicines();
+  var html = '';
+  for(var i=0;i<all.length;i++){
+    var m = all[i];
+    var tag = m.custom ? '<span class="custom-tag">USER</span>' : '';
+    html += '<div class="med-item" onclick="alert(\''+m.name.replace(/'/g,"\\'")+': '+m.uses.replace(/'/g,"\\'")+'\')">'+
+            tag+
+            '<div class="med-name">'+m.name+'</div>'+
+            '<div class="med-use">'+m.uses+'</div></div>';
+  }
+  box.innerHTML = html;
+}
+
+// ================= FORMULAS RENDER =================
+function renderFormulas(){
+  var box = document.getElementById('formulasList');
+  if(!box) return;
+  var html = '';
+  var map = {psora:'Psora',sycosis:'Sycosis',syphilis:'Syphilis',tuberculin:'Tuberculin',cancer:'Cancer'};
+  for(var i=0;i<formulas.length;i++){
+    var f = formulas[i];
+    var n = f.name[currentLang] || f.name.english;
+    var d = f.desc[currentLang] || f.desc.english;
+    var miasmName = map[f.miasm] || f.miasm;
+    html += '<div class="formula-card '+f.miasm+'" onclick="openFormula('+i+')" style="border-left-color:'+f.color+'">'+
+            '<span class="formula-tag" style="background:'+f.color+'">'+miasmName+'</span>'+
+            '<div class="formula-name">'+n+'</div>'+
+            '<div class="formula-line">'+d+'</div></div>';
+  }
+  box.innerHTML = html;
+}
+
+// ================= FORMULA MODAL =================
+function openFormula(idx){
+  var f = formulas[idx];
+  if(!f) return;
+  var n = f.name[currentLang] || f.name.english;
+  var d = f.desc[currentLang] || f.desc.english;
+  var syms = f.symptoms[currentLang] || f.symptoms.english;
+  var rems = f.remedies[currentLang] || f.remedies.english;
+  
+  document.getElementById('fmName').textContent = n;
+  var tag = document.getElementById('fmTag');
+  tag.textContent = f.miasm.toUpperCase();
+  tag.style.background = f.color;
+  document.getElementById('fmDesc').textContent = d;
+  
+  var sHtml = '';
+  for(var i=0;i<syms.length;i++) sHtml += '<li>'+syms[i]+'</li>';
+  document.getElementById('fmSymptoms').innerHTML = sHtml;
+  
+  var rHtml = '';
+  for(var i=0;i<rems.length;i++) rHtml += '<li>'+rems[i]+'</li>';
+  document.getElementById('fmRemedies').innerHTML = rHtml;
+  
+  document.getElementById('formulaModal').classList.add('active');
+}
+
+function closeFormula(e){
+  if(e && e.target !== document.getElementById('formulaModal')) return;
+  document.getElementById('formulaModal').classList.remove('active');
+}
+
+// ================= START =================
 window.onload = function(){
   setLang('urdu');
   loadMateria();
